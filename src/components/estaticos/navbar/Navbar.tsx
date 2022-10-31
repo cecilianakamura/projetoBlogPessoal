@@ -7,7 +7,7 @@ function Navbar() {
                 <Toolbar variant="dense">
                     <Box style={{ cursor: "pointer" }} >
                         <Typography variant="h5" color="inherit">
-                            BlogPessoal
+                            Blog da Ceci
                         </Typography>
                     </Box>
 
