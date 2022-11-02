@@ -1,0 +1,13 @@
+.navbarBarra{
+    display: flex;
+    justify-content: space-between;
+}
+
+.cursor{
+    cursor: pointer;
+    color: white;
+}
+
+.text-decorator-none{
+    text-decoration: none;
+}
