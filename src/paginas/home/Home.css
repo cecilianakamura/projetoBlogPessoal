@@ -1,0 +1,14 @@
+.caixa{
+    background-color: black;
+}
+
+.titulo{
+    color: white !important;
+    font-weight: 'bold';
+}
+
+.botao{
+    border-color: white !important;
+    background-color:black;
+    color: white !important
+}
