@@ -15,7 +15,7 @@ function CadastroUsuario() {
         Pixel art feita por{" "}
         <a
           href="https://www.reddit.com/r/PixelArt/comments/qki8je/gaming_room_pixel_art/"
-          target="_blank"
+          target="_blank" className="text-decorator-none"
         >
           /u/Eiskalter16
         </a>
