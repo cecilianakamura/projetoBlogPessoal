@@ -18,12 +18,12 @@ function CadastroUsuario(){
             <Box>
                 <form>
                     <Typography variant='h3' gutterBottom component='h3' align='center' className='cadastrousuarioTextoBox2'>Crie uma conta</Typography>
-                    <TextField id='usuario' label='usuario' variant='outlined' name='usuario' margin='normal' fullWidth />
-                    <TextField id='senha' label='senha' variant='outlined' name='senha' margin='normal' type='password' fullWidth />
+                    <TextField id='usuario' label='Usuário (e-mail)' variant='outlined' name='usuario' margin='normal' fullWidth />
+                    <TextField id='senha' label='Senha' variant='outlined' name='senha' margin='normal' type='password' fullWidth />
                     <Box>
                         <Link to='/home' className='text-decorator-none'>
                             <Button type='submit' variant='contained'>
-                                Logar
+                                Cadastrar
                             </Button>
                         </Link>
                     </Box>
