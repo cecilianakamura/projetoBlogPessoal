@@ -6,18 +6,18 @@ import "./Login.css";
 
 function Login (){
 
-  const [userLogin, setUserLogin] = useState(<UserLogin>) ({
+  // const [userLogin, setUserLogin] = useState(<UserLogin>) ({
 
 
 
-  })
+  // })
 
-  function updateModel(event: ChangeEvent<HTMLFormElement>){
-    setUserLogin({
-      ...userLogin
-      []
-    })
-  }
+  // function updateModel(event: ChangeEvent<HTMLFormElement>){
+  //   setUserLogin({
+  //     ...userLogin
+  //     []
+  //   })
+  // }
 
     return(
     <Grid container className="loginPagina">
@@ -27,8 +27,8 @@ function Login (){
           Login
         </Typography>
         <TextField 
-        onChange={(event: ChangeEvent<HTMLInputElement>)=> updateModel(event)}
-        value={userLogin.usuario}
+        // onChange={(event: ChangeEvent<HTMLInputElement>)=> updateModel(event)}
+        // value={userLogin.usuario}
         label="Usuário (e-mail)" name="usuario" />
         <TextField label="Senha" name="senha" type="password" />
         <Box className="loginBotaoEntrar">
