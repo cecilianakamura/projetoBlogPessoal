@@ -1,14 +1,10 @@
 import React from 'react';
-import './CadastroUsuario.css'
+import './CadastroUsuario.css';
 
 
 function CadastroUsuario(){
     return(
-        <>
-        <form>
-        
-        </form>
-        </>
+       <h1>Cadastro de Usuário</h1>
     );
 }
 

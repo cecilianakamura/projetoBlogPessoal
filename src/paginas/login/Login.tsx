@@ -6,7 +6,7 @@ import "./Login.css";
 
 function Login (){
 
-  const [userLogin, setUserLogin] = useState<UserLogin> ({
+  const [userLogin, setUserLogin] = useState(<UserLogin>) ({
 
 
 
@@ -40,7 +40,7 @@ function Login (){
         </Box>
       </form>
 
-      <Typography>Não tem uma conta? Cadastre-se aqui!</Typography>
+      <Typography>Não tem uma conta? Cadastre-se <Link to='/cadastrousuario' >aqui!</Link></Typography>
     </Box>
   </Grid>
 );
