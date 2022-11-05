@@ -1,0 +1,46 @@
+.cadastrousuarioFundo{
+    min-height: 100vh;
+    width: 100vw;
+    background-image: url('https://i.imgur.com/iEwNZVI.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.cadastrousuariogrid1{
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: center;
+    font-family: 'DotGothic16', sans-serif;
+}
+
+.cadastrousuariogrid2{
+    font-family: 'Inter', sans-serif;
+    color: white;
+    min-height: 100vh;
+    width: 50vw;
+    display: flex;
+    flex-direction: column;
+    background-color: #0F0213;
+    justify-content: center;
+    align-items: center;
+    opacity: 0.85;
+    text-align: center;
+}
+
+.cadastrousuarioBox{
+    color: white;
+}
+
+.cadastrousuariobotao{
+    background-color: #531253!important;
+    color: white!important;
+    font-family: 'Inter',sans-serif!important;
+}
+
+.MuiInputBase-input{
+    background: #D9D9D9!important;
+    border-radius: 5px;
+}
