@@ -1,42 +1,74 @@
 import { Button, Grid, Typography } from "@material-ui/core";
 import { Box, TextField } from "@mui/material";
-import {Link} from 'react-router-dom';
-import React, { useState } from "react";
+import {Link, useNavigate} from 'react-router-dom';
+import UserLogin from "../../model/UserLogin";
+import useLocalStorage from "react-use-localstorage";
+import { api } from "../../service/service";
+import React, {ChangeEvent, useState, useEffect} from "react";
 import "./Login.css";
 
+
 function Login (){
+  let navigate = useNavigate();
+  const [token, setToken] = useLocalStorage('token');
+  const [userLogin, setUserLogin] = useState<UserLogin> ({
+    id:0,
+    nome:'',
+    usuario:'',
+    foto:'',
+    senha:'',
+    token:''
 
-  // const [userLogin, setUserLogin] = useState(<UserLogin>) ({
+  })
 
+  function updateModel(e: ChangeEvent<HTMLInputElement>){
+    
+    setUserLogin({
+      ...userLogin,
+      [e.target.name]:e.target.value
+    })
+  }
 
+    useEffect(()=>{
+      if(token != ''){
+        navigate('/home')
+      }
+    })
+  //envio das informações
+  async function onSubmit(e: ChangeEvent<HTMLFormElement>){
+    e.preventDefault();
+    try {
+      const resposta = await api.post('/usuarios/logar',userLogin)
+      setToken(resposta.data.token)
 
-  // })
-
-  // function updateModel(event: ChangeEvent<HTMLFormElement>){
-  //   setUserLogin({
-  //     ...userLogin
-  //     []
-  //   })
-  // }
+      alert('Usuário logado com sucesso!');
+    } catch (error) {
+      alert('Dados do usuário inconsistentes. Erro ao autenticar!');
+    }
+  }
 
     return(
     <Grid container className="loginPagina">
     <Box className="card">
-      <form>
+      <form onSubmit={onSubmit}>
         <Typography variant="h3" gutterBottom align="center">
           Login
         </Typography>
+
         <TextField 
-        // onChange={(event: ChangeEvent<HTMLInputElement>)=> updateModel(event)}
-        // value={userLogin.usuario}
+        onChange={(e: ChangeEvent<HTMLInputElement>)=> updateModel(e)}
+        value={userLogin.usuario}
         label="Usuário (e-mail)" name="usuario" />
-        <TextField label="Senha" name="senha" type="password" />
+
+        <TextField 
+        onChange={(e: ChangeEvent<HTMLInputElement>)=>updateModel(e)}
+        value={userLogin.senha}
+        label="Senha" name="senha" type="password" />
+
         <Box className="loginBotaoEntrar">
-          <Link to='/home' className="text-decorator-none">
           <Button type="submit" variant="outlined">
               Entrar
           </Button>
-          </Link>
         </Box>
       </form>
 
