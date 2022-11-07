@@ -1,11 +1,74 @@
-/* eslint-disable react/jsx-no-target-blank */
 import { Button, Grid, TextField, Typography } from "@material-ui/core";
 import { Box } from "@mui/material";
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { ChangeEvent, useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import User from "../../model/User";
+import { cadastrousuario } from "../../service/service";
 import "./CadastroUsuario.css";
 
 function CadastroUsuario() {
+
+  let history = useNavigate();
+
+  const [confirmarSenha,setConfirmarSenha] = useState<String>("");
+
+  function confirmarSenhaHandle(e: ChangeEvent<HTMLInputElement>){
+    setConfirmarSenha(e.target.value);
+  }
+
+  const [user, setUser] = useState<User>(
+      {
+          id: 0,
+          nome: '',
+          usuario: '',
+          foto: '',
+          senha: ''
+      }
+  )
+
+  const [userResult, setUserResult] = useState<User>(
+      {
+          id: 0,
+          nome: '',
+          usuario: '',
+          foto: '',
+          senha: ''
+      }
+  )
+
+  function updateModel(e: ChangeEvent<HTMLInputElement>) {
+
+    setUser({
+        ...user,
+        [e.target.name]: e.target.value
+    });
+
+  }
+
+  async function cadastrarUsuario(e: ChangeEvent<HTMLFormElement>) {
+    e.preventDefault()
+    if(confirmarSenha === user.senha && user.senha.length<=8){
+      try{
+        await cadastrousuario('/usuarios/cadastrar', user, setUserResult);
+        alert('Usuário cadastrado com sucesso');
+      } catch (error){
+        alert('Falha interna ao cadastrar');
+        console.log(error);
+      }
+    }else{
+      alert('As senhas não conferem. Tente novamente.');
+      setUser({ ...user, senha:''});
+      setConfirmarSenha('');
+     }
+
+  }
+
+  useEffect(() => {
+    if (userResult.id !== 0) {
+      history('/login');
+    }
+  }, [userResult]);
+
   return (
     <Grid
       container
@@ -23,7 +86,7 @@ function CadastroUsuario() {
 
       <Grid item xs={6} className="cadastrousuariogrid2">
          <Box className='cadastrousuarioBox'>
-          <form>
+          <form onSubmit={cadastrarUsuario}>
             <Typography
               variant="h3"
               gutterBottom
@@ -33,6 +96,8 @@ function CadastroUsuario() {
               Crie sua conta
             </Typography>
             <TextField
+              value={user.nome}
+              onChange={(event: ChangeEvent<HTMLInputElement>) => updateModel(event)}
               id="nome"
               label="Nome completo"
               variant="outlined"
@@ -40,6 +105,8 @@ function CadastroUsuario() {
               margin="dense"
             />
             <TextField
+              value={user.usuario}
+              onChange={(event: ChangeEvent<HTMLInputElement>) => updateModel(event)}
               id="usuario"
               label="Usuário (e-mail)"
               variant="outlined"
@@ -47,6 +114,8 @@ function CadastroUsuario() {
               margin="dense"
             />
             <TextField
+              value={user.foto}
+              onChange={(event: ChangeEvent<HTMLInputElement>) => updateModel(event)}
               id="foto"
               label="URL da foto"
               variant="outlined"
@@ -54,6 +123,8 @@ function CadastroUsuario() {
               margin="dense"
             />
             <TextField
+              value={user.senha}
+              onChange={(event: ChangeEvent<HTMLInputElement>) => updateModel(event)}
               id="senha"
               label="Senha"
               variant="outlined"
@@ -63,6 +134,8 @@ function CadastroUsuario() {
               
             />
             <TextField
+              value={confirmarSenha}
+              onChange={(event: ChangeEvent<HTMLInputElement>) => confirmarSenhaHandle(event)}
               id="confirmarsenha"
               label="Confirmar senha"
               variant="outlined"
