@@ -36,6 +36,12 @@ function CadastroUsuario() {
       }
   )
 
+  useEffect(() => {
+    if (userResult.id !== 0) {
+      history('/login');
+    }
+  }, [userResult]);
+
   function updateModel(e: ChangeEvent<HTMLInputElement>) {
 
     setUser({
@@ -63,11 +69,7 @@ function CadastroUsuario() {
 
   }
 
-  useEffect(() => {
-    if (userResult.id !== 0) {
-      history('/login');
-    }
-  }, [userResult]);
+
 
   return (
     <Grid
@@ -145,11 +147,9 @@ function CadastroUsuario() {
               
             />
             <Box>
-              <Link to="/home" className="text-decorator-none">
                 <Button type="submit" variant="contained" className="cadastrousuariobotao">
                   Criar conta
                 </Button>
-              </Link>
             </Box>
           </form>
             </Box>
