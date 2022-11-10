@@ -2,8 +2,8 @@ import { Button, Grid, TextField, Typography } from "@material-ui/core";
 import { Box } from "@mui/material";
 import React, { ChangeEvent, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import User from "../../model/User";
-import { cadastrousuario } from "../../service/service";
+import User from "../../models/User";
+import { cadastrousuario } from "../../services/Service";
 import "./CadastroUsuario.css";
 
 function CadastroUsuario() {
@@ -11,10 +11,6 @@ function CadastroUsuario() {
   let history = useNavigate();
 
   const [confirmarSenha,setConfirmarSenha] = useState<String>("");
-
-  function confirmarSenhaHandle(e: ChangeEvent<HTMLInputElement>){
-    setConfirmarSenha(e.target.value);
-  }
 
   const [user, setUser] = useState<User>(
       {
@@ -42,6 +38,10 @@ function CadastroUsuario() {
     }
   }, [userResult]);
 
+  function confirmarSenhaHandle(e: ChangeEvent<HTMLInputElement>){
+    setConfirmarSenha(e.target.value);
+  }
+
   function updateModel(e: ChangeEvent<HTMLInputElement>) {
 
     setUser({
@@ -53,7 +53,7 @@ function CadastroUsuario() {
 
   async function cadastrarUsuario(e: ChangeEvent<HTMLFormElement>) {
     e.preventDefault()
-    if(confirmarSenha === user.senha && user.senha.length<=8){
+    if(confirmarSenha === user.senha && user.senha.length>=8){
       try{
         await cadastrousuario('/usuarios/cadastrar', user, setUserResult);
         alert('Usuário cadastrado com sucesso');
@@ -68,8 +68,6 @@ function CadastroUsuario() {
      }
 
   }
-
-
 
   return (
     <Grid

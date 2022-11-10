@@ -1,9 +1,9 @@
 import { Button, Grid, Typography } from "@material-ui/core";
 import { Box, TextField } from "@mui/material";
 import {Link, useNavigate} from 'react-router-dom';
-import UserLogin from "../../model/UserLogin";
+import UserLogin from "../../models/UserLogin";
 import useLocalStorage from "react-use-localstorage";
-import { login } from "../../service/service";
+import { login } from "../../services/Service";
 import React, {ChangeEvent, useState, useEffect} from "react";
 import "./Login.css";
 
