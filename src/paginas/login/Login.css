@@ -1,36 +1,46 @@
 .loginPagina{
     width: 100vw;
     min-height: 100vh;
-
+    display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-
-    background-image: url('https://i.imgur.com/pG4oVjX.png');
+    background-image: url('https://i.imgur.com/iEwNZVI.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
 }
 
-.card{
-    background: linear-gradient(36deg, #f0d25ac1 8%, #8f256ae1 89%);
+.loginCredito{
+    color: white;
+    display: flex;
+    font-family: 'DotGothic16', sans-serif;
+}
+
+.loginBox{
+    font-family: 'DotGothic16', sans-serif!important;
+    color: white;
+    background-color: #0F0213;
+    opacity: 0.8;
     display: flex;
     flex-direction: column;
     width: 30vw;
-    min-height: 40vh;
-    padding: 1 rem;
+    min-height: 50vh;
+    justify-content: center;
     border-radius: 10px;
-    align-items: center;
+    text-align: center;
 }
 
 form{
     display: flex;
     flex-direction: column;
     gap: 10px;
+    align-items: center;
 }
 
 .loginBotaoEntrar{
-    margin-top: 10px;
-    text-align: center;
+    background-color: #531253!important;
+    color: white!important;
 }
 
 .text-decorator-none{

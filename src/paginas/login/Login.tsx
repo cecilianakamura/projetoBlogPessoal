@@ -48,7 +48,7 @@ function Login (){
 
     return(
     <Grid container className="loginPagina">
-    <Box className="card">
+    <Box className="loginBox">
       <form onSubmit={onSubmit}>
         <Typography variant="h3" gutterBottom align="center">
           Login
@@ -64,8 +64,8 @@ function Login (){
         value={userLogin.senha}
         label="Senha" name="senha" type="password" />
 
-        <Box className="loginBotaoEntrar">
-          <Button type="submit" variant="outlined">
+        <Box >
+          <Button type="submit" variant="outlined" className="loginBotaoEntrar">
               Entrar
           </Button>
         </Box>
@@ -73,6 +73,15 @@ function Login (){
 
       <Typography>Não tem uma conta? Cadastre-se <Link to='/cadastrousuario' >aqui!</Link></Typography>
     </Box>
+    <Box className="loginCredito">
+        Pixel art feita por{" "}
+        <a
+          href="https://www.reddit.com/r/PixelArt/comments/qki8je/gaming_room_pixel_art/"
+          target="_blank" className="text-decorator-none"
+        >
+          /u/Eiskalter16
+        </a>
+        </Box>
   </Grid>
 );
 };
