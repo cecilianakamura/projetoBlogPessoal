@@ -2,13 +2,14 @@ import { Button, Grid, TextField, Typography } from "@material-ui/core";
 import { Box } from "@mui/material";
 import React, { ChangeEvent, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import User from "../../models/User";
 import { cadastrousuario } from "../../services/Service";
 import "./CadastroUsuario.css";
 
 function CadastroUsuario() {
 
-  let history = useNavigate();
+  let navigate = useNavigate();
 
   const [confirmarSenha,setConfirmarSenha] = useState<String>("");
 
@@ -34,35 +35,62 @@ function CadastroUsuario() {
 
   useEffect(() => {
     if (userResult.id !== 0) {
-      history('/login');
+      navigate('/login');
     }
   }, [userResult]);
 
-  function confirmarSenhaHandle(e: ChangeEvent<HTMLInputElement>){
-    setConfirmarSenha(e.target.value);
+  function confirmarSenhaHandle(event: ChangeEvent<HTMLInputElement>){
+    setConfirmarSenha(event.target.value);
   }
 
-  function updateModel(e: ChangeEvent<HTMLInputElement>) {
+  function updateModel(event: ChangeEvent<HTMLInputElement>) {
 
     setUser({
         ...user,
-        [e.target.name]: e.target.value
+        [event.target.name]: event.target.value
     });
 
   }
 
-  async function cadastrarUsuario(e: ChangeEvent<HTMLFormElement>) {
-    e.preventDefault()
+  async function cadastrarUsuario(event: ChangeEvent<HTMLFormElement>) {
+    event.preventDefault()
     if(confirmarSenha === user.senha && user.senha.length>=8){
       try{
         await cadastrousuario('/usuarios/cadastrar', user, setUserResult);
-        alert('Usuário cadastrado com sucesso');
+        toast.success("Usuário cadastrado com sucesso!", {
+          position: "top-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: false,
+          theme: "dark",
+          progress: undefined,
+        });
       } catch (error){
-        alert('Falha interna ao cadastrar');
+        toast.error("Falha interna ao cadastrar", {
+          position: "top-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: false,
+          theme: "dark",
+          progress: undefined,
+        });
         console.log(error);
       }
     }else{
-      alert('As senhas não conferem. Tente novamente.');
+      toast.error("As senhas não conferem. Tente novamente.", {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: false,
+        theme: "dark",
+        progress: undefined,
+      });
       setUser({ ...user, senha:''});
       setConfirmarSenha('');
      }

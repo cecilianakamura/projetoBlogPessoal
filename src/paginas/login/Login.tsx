@@ -7,6 +7,7 @@ import React, {ChangeEvent, useState, useEffect} from "react";
 import "./Login.css";
 import { useDispatch } from "react-redux";
 import { addToken } from "../../store/tokens/actions";
+import { toast } from "react-toastify";
 
 
 function Login (){
@@ -25,11 +26,11 @@ function Login (){
 
   })
 
-  function updateModel(e: ChangeEvent<HTMLInputElement>){
+  function updateModel(event: ChangeEvent<HTMLInputElement>){
     
     setUserLogin({
       ...userLogin,
-      [e.target.name]:e.target.value
+      [event.target.name]:event.target.value
     })
   }
 
@@ -40,14 +41,32 @@ function Login (){
       }
     })
   //envio das informações
-  async function onSubmit(e: ChangeEvent<HTMLFormElement>){
-    e.preventDefault();
+  async function onSubmit(event: ChangeEvent<HTMLFormElement>){
+    event.preventDefault();
     try {
       await login('/usuarios/logar',userLogin, setToken)
 
-      alert('Usuário logado com sucesso!');
+      toast.success("Usuário logado com sucesso", {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: false,
+        theme: "dark",
+        progress: undefined,
+      });
     } catch (error) {
-      alert('Dados do usuário inconsistentes. Erro ao autenticar!');
+      toast.error("Dados do usuário inconsistentes. Erro ao autenticar.", {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: false,
+        theme: "dark",
+        progress: undefined,
+      });
     }
   }
 
@@ -60,12 +79,12 @@ function Login (){
         </Typography>
 
         <TextField 
-        onChange={(e: ChangeEvent<HTMLInputElement>)=> updateModel(e)}
+        onChange={(event: ChangeEvent<HTMLInputElement>)=> updateModel(event)}
         value={userLogin.usuario}
         label="Usuário (e-mail)" name="usuario" />
 
         <TextField 
-        onChange={(e: ChangeEvent<HTMLInputElement>)=>updateModel(e)}
+        onChange={(event: ChangeEvent<HTMLInputElement>)=>updateModel(event)}
         value={userLogin.senha}
         label="Senha" name="senha" type="password" />
 

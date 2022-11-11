@@ -1,7 +1,6 @@
 import React from 'react'
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-import Modal from '@material-ui/core/Modal';
-import {Button,Box } from "@material-ui/core"
+import {Button,Box, Modal } from "@material-ui/core"
 import CloseIcon from '@material-ui/icons/Close';
 import './ModalPostagem.css';
 import CadastroPost from '../cadastroPost/CadastroPost';
@@ -23,7 +22,7 @@ const useStyles = makeStyles((theme: Theme) =>
     paper: {
       position: 'absolute',
       width: 400,
-      backgroundColor: '#CF5C36',
+      backgroundColor: theme.palette.background.paper,
       border: '2px solid #000',
       boxShadow: theme.shadows[5],
       padding: theme.spacing(2, 4, 3),
