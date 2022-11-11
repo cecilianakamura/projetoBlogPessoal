@@ -11,11 +11,10 @@ function Footer() {
     const token = useSelector<TokenState,TokenState['tokens']>(
         (state) => state.tokens
     );
-
-    var footerComponent;
-
-    if(token!==''){
-         footerComponent = <Grid container direction="row" justifyContent="center" alignItems="center">
+    
+    return (
+        <>
+        {token !==''&& <Grid container direction="row" justifyContent="center" alignItems="center">
          <Grid alignItems="center" item xs={12}>
              <Box className='box1'>
                  <Box display="flex" alignItems="center" justifyContent="center">
@@ -28,12 +27,8 @@ function Footer() {
                  </Box>
              </Box>
          </Grid>
-     </Grid>
-    }
-    
-    return (
-        <>
-        {footerComponent}
+     </Grid>}
+
         </>
     )
 }

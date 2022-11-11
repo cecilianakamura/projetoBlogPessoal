@@ -52,6 +52,7 @@ function ListaPostagem() {
 
   return (
     <>
+     {posts.length===0 &&<span className="loader"></span>}
       {posts.map((post) => (
         <Box m={2}>
           <Card variant="outlined">
